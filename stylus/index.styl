@@ -1,0 +1,559 @@
+@import "reset"
+$green=rgb(0,204,206)
+.main
+	position relative
+	margin-right auto
+	margin-left auto
+	width 1190px
+
+.menu
+	border-bottom 2px solid $green
+	height 36px
+	.left
+		float left
+	.right
+		float right
+	.anchor
+		position relative
+		float left
+		padding-right 40px
+		padding-left 40px
+		font-size 14px
+		line-height 34px
+		border-bottom-width 2px 
+		border-bottom-style solid 
+		border-bottom-color transparent
+		cursor pointer
+		&:not(:last-child)
+			border-right 1px solid rgb(230,230,230)
+		&.current
+			border-bottom @border-bottom
+		&:not(div)
+		> a
+			&:hover	
+				color $green
+		> a
+			&:hover
+				&+.fixedBox
+					.items
+						transform translateY(0)
+				&:after
+					background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAANCAYAAAB2HjRBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NURENzg4OTY3RkE4MTFFNjkwOUJERjNGQzdEOEJCNUEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NURENzg4OTc3RkE4MTFFNjkwOUJERjNGQzdEOEJCNUEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1REQ3ODg5NDdGQTgxMUU2OTA5QkRGM0ZDN0Q4QkI1QSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1REQ3ODg5NTdGQTgxMUU2OTA5QkRGM0ZDN0Q4QkI1QSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PpVoSIQAAACzSURBVHjaYvz//z8DuYCJgQJAkWYWGGPzx4//T375AmIygojjX78yWHJzw6T/K3NwMCQKCzNitbniyROG1hcvwArRLPgPEu+ByGF39nZV1RUKbGzoBoA1gsRB8hi6QaENwg9//gTh5QqXLv1nOHPmv9PNm2AaxAeJg+RhamGYERZVj379gpm33P7mzYgHQD7IxoPq6iAbI0ESckA+PpvhLnAG2gyzEYZx2jy0EglFmgECDACwxY2aEq+4nAAAAABJRU5ErkJggg==")
+					transform rotate(180deg)
+			&:after
+				margin-left 3px
+				display inline-block
+				width 11px
+				height 8px
+				vertical-align middle
+				content ""
+				transition transform .25s
+				background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAJCAYAAAACTR1pAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTQzOEQxNTE3RkE4MTFFNkIzRTNBRUI3MTUxNEM0MzUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTQzOEQxNTI3RkE4MTFFNkIzRTNBRUI3MTUxNEM0MzUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxNDM4RDE0RjdGQTgxMUU2QjNFM0FFQjcxNTE0QzQzNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxNDM4RDE1MDdGQTgxMUU2QjNFM0FFQjcxNTE0QzQzNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Prdul7UAAABwSURBVHjaYvz//z8DOYAJxnjw4MHFvXv3YjUFJH7lyhVUOZCNIJybmwuS+L9nz57/MDEQBvFB4iB5ZHE448uXL/KxsbEommGaQOIgeawa0TV3d3fj1IShEV0zLk1YNcI0d3V14dQEwowURwepACDAACx6z8h4L4O2AAAAAElFTkSuQmCC")			
+		.fixedBox
+			position absolute
+			z-index 1
+			top 26px
+			left 50%
+			transform translateX(-50%)
+			overflow hidden
+			&:hover
+				.items
+					transform translateY(0)
+			.items
+				width 122px
+				background-color white
+				overflow hidden
+				transform translateY(-100%)
+				border 1px solid rgb(220,220,220)
+				transition transform .5s
+			a
+				float left
+				width 100%
+				height 40px
+				border-bottom 1px dotted rgb(220,220,220)
+				text-align center
+				line-height 40px
+				color black
+				&:hover
+					background-color $green
+					color white
+		
+.firstScreen
+	margin-bottom 140px
+	height 540px
+	background-color rgb(242,242,242)
+	.left
+		float left
+		margin-top 20px
+		margin-bottom 20px
+		width 890px
+		height 500px
+		background-color red
+		.banner
+			float left
+			width 540px
+			height @height
+		.ad
+			float right
+			width 350px
+			height (@height/2)
+	.right
+		float right
+		margin-top 20px
+		width 290px
+		height 660px
+		background-color pink
+		.ban
+			width 290px
+			height 78px
+			background-color $green
+			line-height @height
+			.text
+				font-size 28px
+				color white
+				margin-left 20px
+			span
+				float right
+				margin-right 20px
+				margin-top 22px
+				text-align center
+			.change
+				display inline-block
+				width 30px
+				height 30px
+				background-color rgb(146,231,223)
+				line-height 30px
+				color rgb(131,198,192)
+				&.current
+					background-color rgb(181,239,232)
+		.item
+			width 290px
+			height 194px
+			background-color pink
+			a
+				width @width
+				height @height
+				display inline-block
+				img
+					width @width
+					height @height
+			.showing
+				display block
+			.hiddened
+				display none
+	.bottom
+		float left
+		width 900px
+		height 140px
+		li
+			width (@width/4)
+			float left
+			text-align center
+			position relative
+			span
+				margin-top 48px
+				display inline-block
+				font-size 12px
+				color rgb(153,153,153)
+			strong
+				display block
+				font-size 30px
+				margin-top 6px
+				color rgb(102,102,102)
+			.line
+				position absolute
+				top -8px
+				right 0px
+				height 65px
+				border-right 1px solid $green
+				transform rotate(20deg)			
+.hot
+	height 634px
+	background-image url("../images/hot.png")
+	background-position 50% 50%
+	.title
+		display inline-block
+		color white
+		font-size 28px
+		margin-top 36px
+		margin-left 540px
+	.tags
+		text-align center
+		margin-top 20px
+		.Text
+			display inline-block
+			color white
+			font-size 14px
+		.tag
+			display inline-block
+			border 1px solid white
+			border-radius 3px 3px 3px 3px
+			padding 8px 12px
+			color white
+			font-size 12px
+			margin-left 10px
+			&:hover
+				cursor pointer
+				background-color $green
+				border-color $green
+	.left-icon
+		position absolute
+		left -55px
+		top 320px
+		display inline-block
+		width 50px
+		height 50px
+		font-size 48px
+		color rgb(166,166,166)
+		cursor pointer
+		display none
+		&:hover
+			color $green
+	.right-icon
+		position absolute
+		left 1196px
+		top 320px
+		display inline-block
+		width 50px
+		height 50px
+		font-size 48px
+		color rgb(166,166,166)
+		cursor pointer
+		&:hover
+			color $green
+	.hot-content
+		position relative
+		width 1190px
+		height 450px
+		margin-top 20px
+		overflow hidden
+		.showBox
+			width 2000px
+			height 450px
+			position absolute
+			left 0
+			transition left .5s
+		.show:nth-of-type(1)
+			margin-left 0 
+		.pic
+			position relative
+			left 0
+			top 0
+		.show
+			float left
+			width 222px
+			height 450px
+			background-color white
+			margin-left 20px
+			cursor pointer
+		.show
+			&:nth-of-type(1)
+				background-image url("../images/hot1.jpg")
+			&:nth-of-type(2)
+				background-image url("../images/hot2.jpg")
+			&:nth-of-type(3)
+				background-image url("../images/hot3.png")
+			&:nth-of-type(4)
+				background-image url("../images/hot4.jpg")
+			&:nth-of-type(5)
+				background-image url("../images/hot5.jpg")
+			&:nth-of-type(6)
+				background-image url("../images/hot6.png")
+			&:nth-of-type(7)
+				background-image url("../images/hot7.jpg")
+			&:nth-of-type(8)
+				background-image url("../images/hot8.jpg")
+			.item-title
+				color rgb(42,52,63)
+				font-size 24px
+				text-align center
+				line-height 60px
+			.notate	
+				color rgb(153,156,180)
+				font-size 12px
+				margin-top 16px
+				margin-left 20px
+			.rate
+				margin-left 20px
+				margin-top 50px
+				p:nth-of-type(1)
+					color rgb(130,140,152)
+					font-size 18px
+				p:nth-of-type(2)
+					color $green
+					font-size 26px
+					margin-top 10px
+				
+.category
+	h1
+		margin-top 50px
+		text-align center
+		background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAGCAYAAADpJ08yAAAAGUlEQVQImWM4duzYfxBgBBHHjx9nYCBCBABlcije5ePiwgAAAABJRU5ErkJggg==")
+		background-repeat repeat-x
+		background-position 0 15px
+		strong
+			margin-right auto
+			margin-left @margin-right
+			display block
+			width 136px
+			background-color white
+			font-size 28px
+			color rgb(51,51,51)
+		span
+			margin-top 8px
+			display block
+			font-size 12px
+			color rgb(153,153,153)
+	.floor
+		margin-top 40px
+		/*overflow hidden*/
+		height 804px
+		.box
+			float left
+			width 278px			
+			height 374px
+			margin-bottom 20px
+			border 1px solid rgb(225,225,225)
+			&:not(:first-child)
+				margin-left 10px
+			&:not(:last-child)
+				margin-right 10px
+			&:nth-child(5)
+				margin-right 0	
+			&:nth-child(2)
+			&:nth-child(6)
+				margin-left 0
+			img
+				width 278px
+				height 186px
+			.text
+				display inline-block
+				margin-top 15px
+				margin-left 15px
+				line-height 20px
+				width 240px
+				height 40px
+			.underline
+				width 250px
+				height 1px
+				margin-left auto
+				margin-right auto
+				margin-top 20px
+				border-bottom 5px solid $green
+			span
+				display inline-block
+				height 50px
+				margin-top 10px
+				text-align center
+				font-size 14px
+				&:not(:first-child)
+					margin-left 20px
+				a
+					display block
+					margin-top 10px	
+					color rgb(153,153,153)
+					&:first-child
+						color rgb(51,51,51)
+			&:nth-of-type(2)
+				img
+					margin-left -65px
+					width 348px
+					height 374px
+				a
+					color white
+					font-size 24px
+					position relative
+					top -370px
+					left 20px
+				span
+					width 278px
+					display block
+					margin-top -16px
+					margin-left -52px
+					a
+						display inline-block
+						color white
+						font-size 14px
+				.project
+					position relative
+					top -370px
+					left 30px
+					width 102px
+					height 32px
+					background-color white
+					margin-left 10px
+					a
+						font-size 14px
+						position relative
+						top 0px
+						color $green
+						line-height 32px
+			.lab
+				height 24px
+				text-align center
+				line-height @height
+				padding-left 5px
+				padding-right 5px
+				background-color rgb(240,240,240)
+				margin-left 10px
+				color rgb(153,153,153)
+				font-size 12px
+				&:nth-of-type(1)
+					margin-left 15px
+				&:hover
+					cursor pointer
+					background-color rgb(210,210,210)
+		.floor-info
+			.floorName
+				font-size 20px
+				color rgb(115,115,115)
+				position relative
+				left 12px 
+				top -20px
+			.flooricon
+				position relative
+				left 18px 
+				top -20px
+				font-size 20px
+			.floorline
+				display inline-block
+				position relative
+				left 22px 
+				top -26px
+				width 1078px
+				border-bottom 1px dotted rgb(153,153,153)
+.popularity
+	h1
+		margin-top 50px
+		text-align center
+		background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAGCAYAAADpJ08yAAAAGUlEQVQImWM4duzYfxBgBBHHjx9nYCBCBABlcije5ePiwgAAAABJRU5ErkJggg==")
+		background-repeat repeat-x
+		background-position 0 15px
+		strong
+			margin-right auto
+			margin-left @margin-right
+			display block
+			width 136px
+			background-color white
+			font-size 28px
+			color rgb(51,51,51)
+		span
+			margin-top 8px
+			display block
+			font-size 12px
+			color rgb(153,153,153)
+	.content
+		width 1190px
+		height 310px
+		margin-top 30px
+		background-color rgb(236,236,236)
+		.left
+			width 850px
+			height 270px
+			float left
+			margin-top 20px
+			margin-bottom 20px
+			margin-left 20px
+			.image
+				float left
+				width 410px
+				height @height
+				img
+					width @width
+					height @height
+			.text
+				float left
+				width 440px
+				height @height
+				h2
+					font-size 16px
+					color rgb(111,111,111)
+					margin-top 16px
+					margin-left 15px
+				p
+					margin-left 15px
+					&:nth-of-type(1)
+						margin-top 30px
+						color rgb(102,102,102)
+						font-size 14px
+					&:nth-of-type(2)
+						color $green
+						font-size 24px
+						margin-top 10px
+						font-family "Microsoft YaHei"
+						font-weight 900
+					&:nth-of-type(3)
+						color rgb(102,102,102)
+						font-size 14px
+						margin-top 20px
+						width 370px
+						height 40px
+						line-height 20px
+				.progress
+					.progressBar
+						display inline-block
+						width 326px
+						height 10px
+						margin-left 15px
+						margin-top 20px
+						border-radius 5px
+						background-image url("../images/p2.gif")
+				.support
+					font-size 12px
+					color rgb(102,102,102)
+					span
+						display inline-block
+						margin-left 15px
+						margin-top 20px
+						&:nth-of-type(2)
+						&:nth-of-type(4)
+							font-size 16px
+							color $green
+			.icon
+				position absolute
+				top 86px
+		.right
+			float left
+			width 300px
+			height 310px
+			margin-left 20px
+			.item
+				width 300px
+				height (310/5)px
+				background-color rgb(179,191,199)
+				.num
+					float left
+					width 60px
+					height 60px
+					font-size 36px
+					color white
+					font-style italic
+					text-align center
+					line-height @height
+				&.current
+					background-color rgb(255,100,88)
+					
+					& > .text
+						border-bottom 1px solid rgb(255,100,88)
+				.text
+					float left
+					width 240px
+					height 60px
+					border-bottom 1px solid rgb(192,201,208)
+					span
+						display inline-block
+						color white
+						text-align center
+						&:nth-of-type(1)
+							font-size 16px
+							margin-top 14px
+						&:nth-of-type(2)
+							font-size 12px
+							margin-top 5px
+					&.show
+						display block
+					&.hidden
+						display none
+				
+			
+				
